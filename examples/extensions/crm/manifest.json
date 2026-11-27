@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "com.example.crm",
+  "version": "0.1.0",
+  "publisher": "Example",
+  "kind": "declarative",
+  "engines": {
+    "emree": ">=0.1.0 <1.0.0"
+  },
+  "permissions": [
+    "room.context.read",
+    "crm.leads.read"
+  ],
+  "contributes": [
+    {
+      "point": "room.panel@1",
+      "id": "com.example.crm.leads",
+      "template": "views/leads.json"
+    },
+    {
+      "point": "command.palette@1",
+      "id": "com.example.crm.search",
+      "action": "crm.leads.search"
+    }
+  ]
+}

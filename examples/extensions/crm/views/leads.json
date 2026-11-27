@@ -1,0 +1,13 @@
+{
+  "type": "stack",
+  "children": [
+    {
+      "type": "heading",
+      "text": "Leads"
+    },
+    {
+      "type": "text",
+      "text": "Illustrative CRM panel. No backend connected."
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Emree declarative extension manifest (draft v1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "publisher",
+    "kind",
+    "engines",
+    "permissions",
+    "contributes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+)+$",
+      "maxLength": 128
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+    },
+    "publisher": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "kind": {
+      "const": "declarative"
+    },
+    "engines": {
+      "type": "object",
+      "required": [
+        "emree"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "emree": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9.-]+$",
+        "maxLength": 128
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "maxProperties": 32,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      }
+    },
+    "contributes": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "point",
+          "id"
+        ],
+        "properties": {
+          "point": {
+            "enum": [
+              "navigation.view@1",
+              "room.panel@1",
+              "conversation.card@1",
+              "command.palette@1",
+              "settings.section@1",
+              "events.subscribe@1",
+              "action.invoke@1",
+              "artifact.preview@1"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(\\.[a-z0-9-]+)+$",
+            "maxLength": 128
+          },
+          "template": {
+            "type": "string",
+            "pattern": "^views/[a-zA-Z0-9_-]+\\.json$"
+          },
+          "action": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9.-]+$"
+          },
+          "event": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9.-]+$"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "point": {
+                  "enum": [
+                    "navigation.view@1",
+                    "room.panel@1",
+                    "conversation.card@1",
+                    "settings.section@1",
+                    "artifact.preview@1"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "template"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "point": {
+                  "enum": [
+                    "command.palette@1",
+                    "action.invoke@1"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "action"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "point": {
+                  "const": "events.subscribe@1"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "event"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
