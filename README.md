@@ -23,6 +23,8 @@ Emree is a new project, not a fork. Dewee is the authoritative service for ident
 
 ## Start here
 
+**Execution priority:** [MVP roadmap](plans/MVP.md), [gap audit](docs/MVP-GAP-AUDIT.md) and [milestone evidence](plans/EVIDENCE.md). Track implementation in [Emree #1](https://github.com/nextlevelbuilder/emree/issues/1) and [Dewee #3227](https://github.com/nextlevelbuilder/dewee/issues/3227).
+
 | Document | Purpose |
 | --- | --- |
 | [Decision brief](DECISIONS.md) | Product and architecture choices; decisions still gated on evidence |

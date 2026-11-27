@@ -39,6 +39,10 @@ DevBox upstream epic [#2696](https://github.com/nextlevelbuilder/dewee/issues/26
 
 For each operable feature: authoritative Gateway route and policy; documented CLI command with JSON output, error code and help; scoped workspace MCP tool where appropriate (never generic operator/shell proxy); CCP/RGD user/operator views or explicit N/A; Emree user journey; trace/audit evidence for success, refused, cancelled and recovery. Documentation updates across public surfaces after implementation. New privileged surfaces default-off, centralized feature flag registry; tenant opt-in cannot override operator deny. Expose capability discovery and safe not-supported states; no automatic fallback to another tenant, runtime or target.
 
+## MVP upstream coordination
+
+[Dewee #3227](https://github.com/nextlevelbuilder/dewee/issues/3227) coordinates new native contracts #3228–#3236; [MVP roadmap](../plans/MVP.md) maps each consumer and [gap audit](MVP-GAP-AUDIT.md) records the current evidence. Reuse existing MCP Tasks #1855, Agent Store #2615/#800, DevBox #3121/#2863/#2864/#2865 and safety prerequisites, rather than duplicate. Verify media/isolation findings #3114/#3208/#3212/#3213 before enabling affected paths.
+
 ## Sequencing and ownership
 
 Dewee maintainers own Gateway/worker/database changes and backward compatibility. Emree maintainers own UI/native client/SDK, local broker, fixtures and release. Joint contract review precedes coding. Use mock service for parallel UI development, mark mock explicitly and block production claim until real integration tests pass. No changes to Dewee repository are part of this documentation bootstrap.

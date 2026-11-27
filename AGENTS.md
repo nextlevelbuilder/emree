@@ -66,6 +66,10 @@ Official modules exercise versioned extension SDK. Unload cancels owned work, re
 
 Use current verified stable MCP and official extension schemas; version-negotiate and test legacy peers; never claim all features from SDK version or a tool name. Treat beta/draft extensions as flag-gated. Standard MCP Apps uses isolated bridge; native approval/credential/device UI stays trusted. Portable packages follow Agent Plugins; legacy Claude/OpenAI imports provide precise component/permission report, no automatic hooks or credential migration. Preserve upstream attribution and test real interoperable samples. See docs/MCP.md and docs/PLUGIN-COMPATIBILITY.md.
 
+## MVP gate discipline
+
+Use plans/MVP.md for initial sequencing and plans/EVIDENCE.md for proof; full PRD remains target scope. Claim only one authorized issue/slice, test actual required environment and report blocked or not-tested honestly. Never present mock UI, unverified capability or a documentation change as a completed milestone. Review both repo contracts and existing upstream issue owners before creating duplicate work.
+
 ## Before reporting completion
 
 List exact tests/commands, evidence and failures or not-run checks; verify all affected surfaces, trace parity and docs follow-up or explicit N/A; update plan/ADR/issue; report security and dependency blockers. Distinguish proposed, implemented, verified, deployed and shipped. Source of inspiration: current Dewee root and CCP development rules (reviewed 308e1ba); these are original desktop-adapted rules, not a copy of private repository text. Recheck upstream rules for cross-repo work and resolve contradictions with maintainers.

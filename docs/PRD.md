@@ -1,6 +1,6 @@
 # Product requirements document
 
-Version 0.6 | Proposed engineering requirements. See [Decision brief](../DECISIONS.md) and [implementation plan](../plans/IMPLEMENTATION.md).
+Version 0.7 | Proposed engineering requirements. See [Decision brief](../DECISIONS.md) and [implementation plan](../plans/IMPLEMENTATION.md).
 
 ## Problem, audience and success
 
@@ -75,6 +75,10 @@ P0 = foundation, P1 = collaboration alpha, P2 = agent/workbench beta, P3 = devic
 See [MCP host](MCP.md), [plugin compatibility](PLUGIN-COMPATIBILITY.md) and [Clarkcant research](CLARKCANT-RESEARCH.md). R42–R48 are release requirements; R49 is independently staged.
 
 See [native onboarding](ONBOARDING.md) and [federation](FEDERATION.md). R38–R41 require separate pilot/release decisions, not first GA blockers.
+
+## Initial delivery gates
+
+The [MVP roadmap](../plans/MVP.md) supersedes the original all-at-once alpha ordering. Existing-workspace real chat is the first useful preview, followed by native signup/create/join, two-human room, agent work, and verified MCP Form/App/Task plus portable plugin. Private DevBox TUI is independently gated; Computer Use, full vendor/enterprise conformance and federation follow separate releases. All R01–R49 remain product commitments, not claims of initial MVP completeness.
 
 ## Scope and non-goals
 

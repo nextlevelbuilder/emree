@@ -1,6 +1,6 @@
 # Architecture decision records
 
-[DECISIONS.md](../../DECISIONS.md) is the decision register (D01–D20). These initial records are proposed planning baselines or spike candidates, not validated production decisions.
+[DECISIONS.md](../../DECISIONS.md) is the decision register (D01–D21). These initial records are proposed planning baselines or spike candidates, not validated production decisions.
 
 | ADR | Subject |
 | --- | --- |
@@ -16,5 +16,7 @@
 | [0010](0010-cross-workspace.md) | Shared contexts across workspace boundaries |
 | [0011](0011-native-mcp.md) | Native MCP host and modern protocol |
 | [0012](0012-portable-plugins.md) | Portable Agent Plugins and vendor compatibility |
+
+D21 records MVP-first execution sequencing in [decision brief](../../DECISIONS.md) and [MVP roadmap](../../plans/MVP.md); no existing architecture ADR is superseded.
 
 Before implementing a spike-dependent or irreversible decision, record status (proposed/accepted/superseded), context, constraints, alternatives, consequences, security boundary, test evidence, compatibility, migration, rollback and review owner. Link the plan task and requirement. Record why complexity is warranted and what evidence would change the decision. Never overwrite accepted decisions without a superseding record.

@@ -1,6 +1,6 @@
 # Emree decision brief
 
-Version 0.6 | 2026-11-27 | Design baseline, not release approval.
+Version 0.7 | 2026-11-27 | Design baseline, not release approval.
 
 ## Executive decision
 
@@ -36,6 +36,7 @@ Status: **Baseline** means use for planning; **Spike** means preferred, not lock
 | D18 | Baseline | Agent-first execution slices, independent review and measured calendar throughput | No human-hour estimate; reforecast after P0. See [plan](plans/IMPLEMENTATION.md). |
 | D19 | Baseline | First-class MCP host and server interoperability; modern stable protocol, native Apps, Tasks, MRTR/forms, stable authorization extensions | Dewee owns invocation and policy, Emree renders; legacy explicit; beta/drafts gated. See [MCP](docs/MCP.md). |
 | D20 | Baseline | Agent Plugins 1.0.0 portable format and Claude/ChatGPT/Codex adapters; native UI SDK is host-specific overlay | No vendor credential import or blanket hook/runtime parity; standard Apps before OpenAI extensions. See [compatibility](docs/PLUGIN-COMPATIBILITY.md). |
+| D21 | Baseline | MVP-first vertical releases; G1 real existing Dewee chat before native room, G2 self-service onboarding, G3–G5 real collaboration/MCP; separately gated G6 DevBox | Retain target scope; [MVP roadmap](plans/MVP.md) governs first pilot sequencing; [gap audit](docs/MVP-GAP-AUDIT.md), [evidence ledger](plans/EVIDENCE.md). No mock counts as product readiness. |
 
 ## What makes this worth building
 

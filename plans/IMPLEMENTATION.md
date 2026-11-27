@@ -1,6 +1,8 @@
 # Detailed implementation plan
 
-Version 0.6 | 2026-11-27 | Proposed, not started. Read [decision brief](../DECISIONS.md), [PRD](../docs/PRD.md), [onboarding](../docs/ONBOARDING.md), [federation](../docs/FEDERATION.md) and [Dewee integration](../docs/DEWEE-INTEGRATION.md).
+Version 0.7 | 2026-11-27 | Proposed, not started. Read [decision brief](../DECISIONS.md), [PRD](../docs/PRD.md), [onboarding](../docs/ONBOARDING.md), [federation](../docs/FEDERATION.md) and [Dewee integration](../docs/DEWEE-INTEGRATION.md).
+
+**Initial execution order:** [MVP roadmap](MVP.md) is authoritative for staged pilot delivery; [gap audit](../docs/MVP-GAP-AUDIT.md), [evidence ledger](EVIDENCE.md), [Emree #1](https://github.com/nextlevelbuilder/emree/issues/1) and [Dewee #3227](https://github.com/nextlevelbuilder/dewee/issues/3227) track gates. This full-scope plan remains the later product backlog and its estimates are not MVP estimates.
 
 ## 1. Agent-first delivery model
 
