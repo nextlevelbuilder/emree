@@ -10,6 +10,8 @@ Emree is designed to be the everyday collaboration surface for teams: chat, task
 
 - Human-to-human, human-to-agent and agent-to-agent collaboration in shared rooms and private conversations.
 - First-time onboarding through Dewee SSO and native guided workspace setup, without prior Dewee knowledge.
+- Native MCP host: interactive MCP Apps, durable Tasks, forms and version-negotiated protocol support.
+- Portable Agent Plugins packaging with Claude and ChatGPT/Codex compatibility adapters.
 - Federation-ready architecture for future explicit cross-workspace rooms, DMs and shared agents/resources.
 - An actionable inbox for work, decisions and approvals, rather than another stream of unread messages.
 - DevBox Workbench: a resizable right sidebar for remote terminal/TUI and structured coding-agent chat, with session-aware handoff and artifacts.
@@ -26,6 +28,9 @@ Emree is a new project, not a fork. Dewee is the authoritative service for ident
 | [Decision brief](DECISIONS.md) | Product and architecture choices; decisions still gated on evidence |
 | [Onboarding](docs/ONBOARDING.md) | First-party SSO, create/join, guided setup and recovery |
 | [Cross-workspace collaboration](docs/FEDERATION.md) | Shared rooms, DMs, grants, compliance and relay |
+| [Native MCP](docs/MCP.md) | Modern protocol, Apps, Tasks, MRTR, forms and authorization |
+| [Plugin compatibility](docs/PLUGIN-COMPATIBILITY.md) | Portable packages and vendor overlays |
+| [Clarkcant research](docs/CLARKCANT-RESEARCH.md) | Widget host and conversation patterns |
 | [Product requirements](docs/PRD.md) | Scope, user journeys, feature acceptance criteria |
 | [Architecture](docs/ARCHITECTURE.md) | Boundaries, components, data ownership, repository layout |
 | [API and data contracts](docs/CONTRACTS.md) | Proposed HTTP, events, schemas, auth and error handling |

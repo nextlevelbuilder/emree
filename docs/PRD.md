@@ -1,6 +1,6 @@
 # Product requirements document
 
-Version 0.5 | Proposed engineering requirements. See [Decision brief](../DECISIONS.md) and [implementation plan](../plans/IMPLEMENTATION.md).
+Version 0.6 | Proposed engineering requirements. See [Decision brief](../DECISIONS.md) and [implementation plan](../plans/IMPLEMENTATION.md).
 
 ## Problem, audience and success
 
@@ -53,7 +53,7 @@ P0 = foundation, P1 = collaboration alpha, P2 = agent/workbench beta, P3 = devic
 | R29 | P4 | Plugin distribution | Signed allowlisted registry and private catalog, version pin, review on scope widening, revoke/disable, no mandatory public marketplace. |
 | R30 | P4 | Accessibility and i18n | English/Vietnamese, keyboard-only flows, screen reader labels, reduced motion, light/dark/system, zoom and responsive layout. |
 | R31 | P4 | Operability | Contract, load, fault, security and real OS tests with evidence, trace parity, supportable error codes and diagnostics. |
-| R32 | Later | External runtimes, voice/video, custom sandboxed UI | Only ship after explicit demand, interoperability/security tests; no parity claim for unsupported capability. |
+| R32 | Later | External runtimes, voice/video, arbitrary custom UI outside MCP Apps | Only ship after explicit demand, interoperability/security tests; no parity claim for unsupported capability. |
 | R33 | P1 | First-time native onboarding | First-party Dewee SSO returns to Emree; separately audience-bound desktop session, no dashboard detour, duplicate accounts or generic SSO bearer. |
 | R34 | P1 | Workspace create/join | Explicit entitlement/region/confirmation, verified invite, idempotent provisioning, resume and switch; no redundant workspace. |
 | R35 | P1 | Guided Dewee setup in Emree | Reuse server-owned Concierge/structured cards, provider verification, Super Agent handoff; owner/member/managed role split; secret-free recovery. |
@@ -63,12 +63,22 @@ P0 = foundation, P1 = collaboration alpha, P2 = agent/workbench beta, P3 = devic
 | R39 | Later | Shared resources and agents | Explicit scoped owner grant, remote execution in owner workspace, provenance/ACL/budgets, no credential or transitive sharing. |
 | R40 | Later | Cross-workspace governance | Both policies intersect, retention/residency/DLP/export/legal hold, auditable consent and conflict denial; disclose recipient copies. |
 | R41 | Later | Cross-cell / independent deployment collaboration | Authenticated relay, authoritative commit ACK, dedup/recovery/partition fail-closed, key rotation, independent security tests. |
+| R42 | P1 | Native MCP core | Modern stateless discovery and invocation, tools/resources/prompts, schema validation, auth and legacy negotiation; supported peers tested, no silent fallback or unsupported advertised capability. |
+| R43 | P1 | Native MCP forms/MRTR | Schema-driven form, accept/decline/cancel, secure URL handoff, durable resume and requester privacy; no forged consent. |
+| R44 | P1 | Native MCP Apps | Standard sandboxed bridge, scoped UI resource, inline and panel, permitted actions, text fallback, revocation and teardown; real official sample and IPC escape tests. |
+| R45 | P2 | Native MCP Tasks | Durable external handle linked to Dewee tasks, poll/update/cancel per spec, pending inputs, resume after disconnect and verified result; no duplicate effect or false cancel. |
+| R46 | P1 | Portable plugin import/export | Agent Plugins 1.0.0 and Claude/ChatGPT/Codex adapters, provenance, component-level compatibility and scope report, fresh auth, no automatic hooks or proprietary credentials. |
+| R47 | P2 | OpenAI extension compatibility | Sidebar/panel/settings/onboarding, composer mentions, display/deep links, file and form extensions, message/context bridge with safe draft and permission semantics; unsupported features explicit. |
+| R48 | P4 | MCP auth and interoperability matrix | Stable applicable official authorization extensions, pinned versioned contract/real integration tests across clients and surfaces; capability registry, security gates. |
+| R49 | Experimental | Beta/draft MCP extension support | Skills/Events per pinned revision, file transfer experiment behind flags; do not claim draft stable or advertise unimplemented delivery modes. |
+
+See [MCP host](MCP.md), [plugin compatibility](PLUGIN-COMPATIBILITY.md) and [Clarkcant research](CLARKCANT-RESEARCH.md). R42–R48 are release requirements; R49 is independently staged.
 
 See [native onboarding](ONBOARDING.md) and [federation](FEDERATION.md). R38–R41 require separate pilot/release decisions, not first GA blockers.
 
 ## Scope and non-goals
 
-Alpha: first-time native Dewee SSO/signup, create/join/setup, rooms/DMs, threads, realtime sync, basic attachments, extension registry, real Dewee integration and federation contract runway. Beta adds agent work and remote DevBox TUI then structured chat; Computer Use is independently flagged. GA requires enterprise reliability and secure distribution. Do not rebuild Slack calls, Notion docs, CRM, IDE, agent runtime, marketplace backend, or cross-region active-active replication. Do not promise all native Computer Use actions on every OS. Cross-workspace live collaboration remains separately gated.
+Alpha: first-time native Dewee SSO/signup, create/join/setup, rooms/DMs, threads, realtime sync, basic attachments, extension registry, native MCP core/forms/Apps and portable plugin import, real Dewee integration and federation contract runway. Beta adds agent work and remote DevBox TUI then structured chat; Computer Use is independently flagged. GA requires enterprise reliability and secure distribution. Do not rebuild Slack calls, Notion docs, CRM, IDE, agent runtime, marketplace backend, or cross-region active-active replication. Do not promise all native Computer Use actions on every OS. Cross-workspace live collaboration remains separately gated.
 
 ## Proposed acceptance targets
 

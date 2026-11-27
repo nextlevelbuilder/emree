@@ -1,6 +1,6 @@
 # Emree decision brief
 
-Version 0.5 | 2026-11-27 | Design baseline, not release approval.
+Version 0.6 | 2026-11-27 | Design baseline, not release approval.
 
 ## Executive decision
 
@@ -19,7 +19,7 @@ Status: **Baseline** means use for planning; **Spike** means preferred, not lock
 | D01 | Baseline | Greenfield Apache-2.0 client, public repo | No source copy from noncommercial/copy-left systems without separate clearance. Permissive license with patent grant; owner may review license before external contributions. |
 | D02 | Baseline | Dewee authoritative backend; native collaboration is a Dewee module with adapter to existing Team Room coordinator | No duplicate backend, auth, or agent runtime; avoid breaking external group/mailbox semantics. |
 | D03 | Spike | Tauri 2, Rust, React/TS, Vite, pnpm, Cargo | Electron fallback if WebView/IPC/accessibility/build benchmarks fail. Wails not preferred for greenfield. |
-| D04 | Baseline | Plugin-first with non-replaceable trusted kernel; built-ins consume versioned extension contracts | Do not run arbitrary npm/Rust third-party code in privileged host. First release declarative only; sandboxed UI later. |
+| D04 | Baseline | Plugin-first with non-replaceable trusted kernel; built-ins consume versioned extension contracts | Do not run arbitrary npm/Rust third-party code in privileged host. Declarative first-party UI and isolated standard MCP Apps in alpha; arbitrary executable UI plugins later. |
 | D05 | Baseline | Home-cell routing, PostgreSQL authoritative, client SQLite cache | No cross-cell shared DB; no global chat DB or active-active writes. |
 | D06 | Spike | Centrifugo + Valkey for realtime; scoped connection/subscription authorization; REST durable writes, WS event delivery | Self-built Go WS fallback if revocation/recovery gates fail. Keep durable event cursor independent of transport history. |
 | D07 | Baseline | Transactional PostgreSQL outbox and bounded workers initially | NATS JetStream later only when measurable lag/contention requires it; no duplicate broker just for fashion. |
@@ -34,6 +34,8 @@ Status: **Baseline** means use for planning; **Spike** means preferred, not lock
 | D16 | Baseline | Native first-party Dewee SSO and conversational onboarding, including new accounts/workspaces | Existing SSO tokens are userinfo-only; add separate desktop session and native adapters, reuse Setup Concierge and provisioning. See [onboarding](docs/ONBOARDING.md). |
 | D17 | Baseline / Deferred delivery | Federation-ready identities, room ownership and policy from alpha; cross-workspace rooms, DMs, agents/resources follow explicit bilateral approval | Owner-anchored shared context, no global DB/tenant membership; same-cell then cross-cell/independent deployment. See [federation](docs/FEDERATION.md). |
 | D18 | Baseline | Agent-first execution slices, independent review and measured calendar throughput | No human-hour estimate; reforecast after P0. See [plan](plans/IMPLEMENTATION.md). |
+| D19 | Baseline | First-class MCP host and server interoperability; modern stable protocol, native Apps, Tasks, MRTR/forms, stable authorization extensions | Dewee owns invocation and policy, Emree renders; legacy explicit; beta/drafts gated. See [MCP](docs/MCP.md). |
+| D20 | Baseline | Agent Plugins 1.0.0 portable format and Claude/ChatGPT/Codex adapters; native UI SDK is host-specific overlay | No vendor credential import or blanket hook/runtime parity; standard Apps before OpenAI extensions. See [compatibility](docs/PLUGIN-COMPATIBILITY.md). |
 
 ## What makes this worth building
 
@@ -42,6 +44,8 @@ Dewee's durable value is agent coordination, governance and organizational knowl
 Validate with 3–5 design-partner teams, including a user new to Dewee and a cross-workspace pilot when approved; measure weekly accepted human+agent tasks, time-to-first accepted result, inbox resolution, adoption, failed/retried work, support incidents and cost per accepted task. Baseline metrics during alpha before setting growth targets. Do not optimize tokens or messages as proxy for customer value.
 
 ## Gates before irreversible implementation
+
+- Verify modern/legacy MCP conformance and peer feature negotiation; exercise a real MCP App, MRTR form, durable task and portable/legacy plugin import. No advertised untested capability; independent isolation and authorization review.
 
 - Prove a new user can create or join a workspace from Emree, safely resume the same server-owned onboarding, and reach a first useful task.
 - Verify issuer-qualified identity, room ownership and policy contracts without granting external access; separate federation pilot requires bilateral consent and revocation tests.

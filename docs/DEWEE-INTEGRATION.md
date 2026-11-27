@@ -16,6 +16,7 @@ Emree calls Dewee's supported contracts. This document is a public-facing capabi
 | Connected browser | Device enrollment/grants/control/revocation | Reuse via official capability; native device broker for files/GUI |
 | Workstations | Remote execution interface | Future execution provider only; not substitute for safe DevBox terminal |
 | DevBox | Lifecycle/scripts/managed runtimes and isolated compute | Scoped access, async operation/worker controller, PTY, structured runtime adapters, sessions, quotas and artifacts |
+| MCP protocol | Guarded client/servers, OAuth, structured results and partial modern Events path; full conformance unverified | Modern/legacy capability inventory, MRTR, Apps resource/metadata preservation, Tasks, authorization extensions, secure interaction/task ledger; see [MCP](MCP.md) |
 | Plugin registry | Product direction; maturity must be verified | Shared signed catalog and desktop manifest target; no second marketplace |
 
 ## Cross-repo work packages
@@ -31,6 +32,8 @@ Emree calls Dewee's supported contracts. This document is a public-facing capabi
 DevBox upstream epic [#2696](https://github.com/nextlevelbuilder/dewee/issues/2696) and access/accounts/repositories/work/usage/extensions/storage/activity issue references [#3118](https://github.com/nextlevelbuilder/dewee/issues/3118) through [#3125](https://github.com/nextlevelbuilder/dewee/issues/3125) were seen in the reviewed UI capability map, not independently confirmed current. Reconcile with those issues; do not create duplicates or mark them done based on UI placeholders.
 
 - D-H: federation contract runway, then mutual partner relationship, scoped shared room/DM, resource/agent grants, policy and cross-cell relay after approval. Keep tenant ownership and existing agent peer semantics intact.
+
+- D-I: native MCP host/server parity and stable extensions, portable package normalization, app/task/elicitation bridges, versioned vendor adapters; reuse existing identity, Human Interaction, task, audit and registry. See [MCP](MCP.md), [plugin compatibility](PLUGIN-COMPATIBILITY.md).
 
 ## Parity matrix
 

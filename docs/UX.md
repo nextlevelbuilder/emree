@@ -22,6 +22,10 @@ Design for daily collaboration, not an admin dashboard. Default shell: workspace
 
 See [onboarding](ONBOARDING.md) for the exact novice, returning and invited paths. No technical terms, manual gateway key, separate Dewee dashboard wizard or unnecessary provider question. Secure browser handoffs return to same native screen; show canonical setup progress, one next action, recovery without repeated data. For future [shared contexts](FEDERATION.md), show verified external badge, owner, participating organizations, share scope and policy preview; invite/DM consent, resource ACL and revoke states. Never expose unimplemented capabilities.
 
+## Native interactive capability surfaces
+
+Render MCP Apps inline or in right panel/fullscreen when negotiated, native forms with safe accept/decline/cancel, and durable MCP task cards in inbox/activity. Preserve text fallback and distinguish live state vs historical snapshot. Plugin manager imports portable/vendor packages with component-level compatibility, permission changes, unsupported features and fresh connection flow. Map sidebar apps, settings, mentions and file viewers to existing navigation/composer/preview slots; no second UI system. See [MCP](MCP.md), [plugin compatibility](PLUGIN-COMPATIBILITY.md), [Clarkcant research](CLARKCANT-RESEARCH.md).
+
 ## Wireframe A: team room + execution panel
 
 ```text

@@ -53,6 +53,10 @@ See [ONBOARDING.md](ONBOARDING.md): use a first-party native OIDC client and sep
 
 See [FEDERATION.md](FEDERATION.md): room ownership/home cell and issuer-qualified principals/resources in initial contracts; native local rooms remain default. Shared contexts use explicit bilateral relationships and resource-owner grants, not foreign tenant membership. Same-cell first, cross-cell relay later. Single authority per room, no global database or implicit cross-workspace access.
 
+## Native MCP and portable plugin planes
+
+See [MCP.md](MCP.md) and [PLUGIN-COMPATIBILITY.md](PLUGIN-COMPATIBILITY.md). Dewee owns MCP connection, identity, authorization, invocation/interaction ledger and durable task linkage; Emree hosts native schema forms and isolated MCP Apps, with negotiated vendor overlays. Portable Agent Plugins packages are canonical distribution, native contribution registry stays host-specific. Learn widget registry, typed action and snapshot/instance patterns from [Clarkcant](CLARKCANT-RESEARCH.md); do not port its legacy transport or duplicate runtime.
+
 ## Client layout
 
 - Local bundled React 19/TS/Vite shell, accessible design system, TanStack Query for server state, Zustand for transient UI state. Virtualized message timeline; ProseMirror/Tiptap candidate for composer; sanitized content.

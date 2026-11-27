@@ -1,6 +1,6 @@
 # Detailed implementation plan
 
-Version 0.5 | 2026-11-27 | Proposed, not started. Read [decision brief](../DECISIONS.md), [PRD](../docs/PRD.md), [onboarding](../docs/ONBOARDING.md), [federation](../docs/FEDERATION.md) and [Dewee integration](../docs/DEWEE-INTEGRATION.md).
+Version 0.6 | 2026-11-27 | Proposed, not started. Read [decision brief](../DECISIONS.md), [PRD](../docs/PRD.md), [onboarding](../docs/ONBOARDING.md), [federation](../docs/FEDERATION.md) and [Dewee integration](../docs/DEWEE-INTEGRATION.md).
 
 ## 1. Agent-first delivery model
 
@@ -10,16 +10,17 @@ Assumed execution setup: four concurrent implementation lanes (Claude/Codex as a
 
 | Phase | Accepted slices (provisional) | Calendar window from kickoff (conditional, overlapping) |
 | --- | ---: | --- |
-| P0 | 10–15 | Days 1–5 |
-| P1 incl. onboarding and federation runway | 36–57 | Weeks 1–3; first usable collaboration alpha around week 3 |
-| P2a agent-native | 13–20 | Weeks 3–5 |
-| P2b DevBox Workbench | 20–32 | Weeks 3–6 |
-| P3 Computer Use and scale | 17–30 | Weeks 5–8 |
-| P4 GA evidence | 13–22 | Weeks 7–11 |
-| Core through GA | 109–176 | Planning range 7–11 calendar weeks, not a release commitment |
+| P0 | 12–18 | Days 1–7 |
+| P1 incl. onboarding, MCP core/forms/Apps, portable plugins and federation runway | 53–85 | Weeks 1–5; first useful vertical slice earlier if gates pass |
+| P2a agent-native, MCP Tasks and vendor extensions | 21–34 | Weeks 4–8 |
+| P2b DevBox Workbench | 20–32 | Weeks 4–8 |
+| P3 Computer Use and scale | 17–30 | Weeks 6–11 |
+| P4 GA evidence, auth extensions and conformance | 16–27 | Weeks 9–15 |
+| Core through GA | 139–226 | Planning range 9–15 calendar weeks, not a release commitment |
+| MCP beta/draft pilots | 3–5 | Separately gated, not GA blocker |
 | F1–F4 federation (separate, post-runway) | 17–29 | Schedule after partner/security gates; same-cell pilot may overlap late beta |
 
-Baseline scenario (4 implementation lanes + separate review): alpha 2–3 weeks, useful agent/DevBox beta 4–6 weeks, gated GA 7–11 weeks if dependencies and review throughput hold. Two lanes may require 12–20+ weeks; eight may achieve 5–8 weeks only if disjoint scope, CI, reviews and upstream capacity support it. These are scenarios, not measured forecast confidence intervals; concurrency is not linear acceleration. Signing, physical hardware, provider approval, partner policies and operator/human decisions are external waits and can shift calendar dates without changing slice count. No background work or production rollout is implied.
+Baseline scenario (4 implementation lanes + separate review): alpha 3–5 weeks, useful agent/DevBox and MCP Tasks beta 6–8 weeks, gated GA 9–15 weeks if dependencies and review throughput hold. These are conditional scenarios based on provisional accepted slices, not model benchmarks or measured forecast intervals. At 4 lanes, one accepted slice per active day and 5 active days/week, 139–226 slices divided by 20/week gives about 7–11.3 weeks before integration/dependency overhead; 25% adds roughly 9–14.2 weeks. Eight lanes do not guarantee half the time; reforecast after P0. Signing, physical devices, vendor and security approval, integration and quota waits may extend the range.
 
 Calibrate after P0: record accepted slices per day and per lane, first-pass acceptance, median/p90 review cycle, retry count, blocked days, elapsed time from issue claim to verified merge, queue wait and evidence quality. Re-estimate remaining scope each wave using observed throughput and dependency critical path. Use Claude and Codex in distinct contexts; choose implementation/reviewer based on measured results, not fixed vendor assumptions. Human maintainers retain policy, security and release decisions. No fixed team size or launch date committed. [METR time-horizon caveat](https://evals.alignment.org/time-horizons/): success on benchmark tasks is not end-to-end elapsed delivery time for this project.
 
@@ -29,6 +30,15 @@ Calibrate after P0: record accepted slices per day and per lane, first-pass acce
 flowchart LR
     P0[Foundation / spikes] --> A[Auth + bootstrap]
     P0 --> S[Extension contracts]
+    P0 --> MC[Modern MCP + legacy conformance]
+    MC --> MF[Native forms / MRTR]
+    MC --> MA[MCP Apps isolated host]
+    S --> MP[Portable plugin import]
+    MF --> MT[Durable MCP Tasks]
+    MA --> ME[Vendor extensions]
+    MP --> ME
+    MT --> Q
+    ME --> Q
     A --> OB[Native onboarding + setup resume]
     A --> R[Native room API + DB]
     R --> FR[Federation contract runway]
@@ -55,7 +65,7 @@ flowchart LR
 
 Ownership abbreviations: E = Emree client/SDK, D = Dewee upstream, O = infrastructure/operations, S = security/QA. Joint contracts reviewed by both E/D. No automatic upstream issue creation; reconcile existing issues first.
 
-## 3. P0 — Foundation and technical spikes (10–15 slices)
+## 3. P0 — Foundation and technical spikes (12–18 slices)
 
 | Package | Owner | Depends | Agent slices | Deliverable / proof |
 | --- | --- | --- | --- | --- |
@@ -73,7 +83,13 @@ Checklist:
 
 Exit: framework, transport and DevBox feasibility evidence available; no unmitigated critical boundary failure. If Centrifugo fails revocation/replay test, use a bounded Go transport adapter. If native desktop framework fails, compare Electron. If gVisor PTY or runtime terms fail, retain safe management only, defer interactive execution.
 
-## 4. P1 — Collaboration alpha, onboarding and federation runway (36–57 slices)
+MCP P0 package:
+
+| Package | Owner | Depends | Agent slices | Deliverable / DoD |
+| --- | --- | --- | --- | --- |
+| M01 | E/D/S | F01,F02 | 2–3 | MCP version/SDK/extension conformance spike; test modern/legacy wire, examine official SDK vs existing Go stack, Apps sandbox and package schema; no unsupported advertisement. |
+
+## 4. P1 — Collaboration alpha, onboarding, MCP and federation runway (53–85 slices)
 
 | Package | Owner | Depends | Agent slices | Work breakdown and DoD |
 | --- | --- | --- | --- | --- |
@@ -94,6 +110,15 @@ Additional P1 work packages (can run alongside collaboration; O01 must precede n
 | O03 | E/D/S | O02 | 3–5 | Reuse Setup Concierge/cards, provider validation, readiness and quiet handoff; secret-free trusted handoff, retry and cross-client resume; invited/member/managed/self-host states. |
 | X00 | D/E/S | F02; before A02 schema freeze | 2–3 | Federation runway: owner/home cell, issuer-qualified principal and resource refs, policy epoch, visibility and share context contracts. Local-only default; no external grants enabled. |
 
+Additional mandatory MCP/portable plugin P1 packages:
+
+| Package | Owner | Depends | Agent slices | Deliverable / DoD |
+| --- | --- | --- | --- | --- |
+| M02 | D/E | M01,A01 contract | 4–7 | Modern MCP client/server core, legacy negotiation, schemas/discovery/routing/cache/auth/notifications, preserve guarded transport and CLI/MCP parity; contract fixtures. |
+| M03 | D/E/S | M02,A01 | 4–6 | MRTR form/URL, persistent invocation ledger, validated user response and current authority, trusted handoff, private group input, restart/expiry/cancel tests. |
+| M05 | E/D/S | M02,A06 contract | 5–8 | Native standard MCP Apps isolated iframe, resources/tool metadata, standard bridge, inline/panel, host policy and fallback; real examples, IPC/CSP/revoke tests. |
+| M06 | E/D/S | M01,A06 | 4–7 | Agent Plugins canonical importer/exporter and Claude/OpenAI legacy adapters; signed provenance, component/permission report, fresh auth, safe archive inspection and disabled hooks. |
+
 Work slices in sequence:
 - [ ] A01: install app -> system browser -> authenticated workspace -> disconnect/sign-out; no secrets in renderer.
 - [ ] A02+A03: two clients -> send -> durable ACK -> realtime delivery -> disconnect/replay. Test DB crash before/after commit and duplicate client ID.
@@ -102,11 +127,11 @@ Work slices in sequence:
 - [ ] A06: example extension adds panel through SDK, cannot access ungranted action, unload leaves zero callbacks.
 - [ ] A07: invite real design-partner test accounts on staging; publish acceptance evidence, not production release.
 
-Exit: R01–R13 plus R33–R37 (onboarding and federation runway) alpha scope proven against real Dewee for supported edition, no cross-tenant exposure, message durability/recovery and quota gates. AI outage does not block human messaging. 1k CCU is a test target, not entitlement.
+Exit: R01–R13 plus R33–R37, R42–R44 and R46 (onboarding and federation runway) alpha scope proven against real Dewee for supported edition, no cross-tenant exposure, message durability/recovery and quota gates. AI outage does not block human messaging. 1k CCU is a test target, not entitlement.
 
-## 5. P2 — Agent-native collaboration and DevBox Workbench (33–52 slices)
+## 5. P2 — Agent-native collaboration, MCP and DevBox Workbench (41–66 slices)
 
-### P2a: agent-native beta (13–20 slices)
+### P2a: agent-native beta, Tasks and vendor extension compatibility (21–34 slices)
 
 | Package | Owner | Depends | Agent slices | Work breakdown and DoD |
 | --- | --- | --- | --- | --- |
@@ -114,6 +139,13 @@ Exit: R01–R13 plus R33–R37 (onboarding and federation runway) alpha scope pr
 | B02 | D/E | B01 | 3–5 | Actionable inbox, existing interaction/approval cases, precise scopes/expiry, cancel/refuse/retry, current authority, private results and approval action card. |
 | B03 | D/E | B01 | 3–5 | Link existing tasks/knowledge/assets, assign and handoff, shared task status, resource ACL, search, explicit share; no duplicated authority. |
 | B04 | E/D/S | B01–B03 | 3–4 | Run explorer and semantic event projection, batching, stop/recovery, traces, acceptance and cost metrics; E2E task accepted by authorized reviewer. |
+
+Additional P2a packages:
+
+| Package | Owner | Depends | Agent slices | Deliverable / DoD |
+| --- | --- | --- | --- | --- |
+| M04 | D/E | M02,M03,B02 | 4–7 | Modern MCP Tasks durable handles, scoped poll/update/cancel, pending input, inbox projection, recovery, verified result and unknown effect tests. |
+| M07 | E/D/S | M05,M06 | 4–7 | OpenAI vendor extension adapter: sidebar/panel/settings/onboarding, file viewer, mentions, display/deep links, form/context/message; capability-by-capability E2E, gated unsupported features. |
 
 ### P2b: DevBox Workbench (20–32 slices)
 
@@ -135,7 +167,7 @@ Checklist:
 - [ ] Share one permitted diff/artifact back to room; observer cannot send input, old ticket fails after recreate.
 - [ ] Reconcile DevBox compute costs, account terms and retention; feature flag remains off by default.
 
-Exit: R14–R23, real terminal and at least one real structured adapter verified in isolated DevBox. Do not claim all vendors support Chat or same-session conversion. A limited internal DevBox pilot is allowed only with explicit quotas/admission and single trust domain; broad shared beta waits for P3 hardening.
+Exit: R14–R23, R45 and R47, real terminal and at least one real structured adapter verified in isolated DevBox. Do not claim all vendors support Chat or same-session conversion. A limited internal DevBox pilot is allowed only with explicit quotas/admission and single trust domain; broad shared beta waits for P3 hardening.
 
 ## 6. P3 — Computer Use and scale beta (17–30 slices)
 
@@ -159,7 +191,7 @@ Checklist:
 
 Exit: R24–R27 gated; Computer Use can be released independently per platform, without claiming unsupported OS parity. Broad DevBox access requires actual quota/isolation/recovery evidence.
 
-## 7. P4 — Enterprise GA (13–22 slices)
+## 7. P4 — Enterprise GA and MCP conformance (16–27 slices)
 
 | Package | Owner | Depends | Agent slices | Work breakdown and DoD |
 | --- | --- | --- | --- | --- |
@@ -169,7 +201,19 @@ Exit: R24–R27 gated; Computer Use can be released independently per platform, 
 | G04 | E/D/S | B04,W06,C06,G01–G03 | 3–5 | E2E release matrix, penetration/security review, SLO evidence, issue triage, support docs, design-partner acceptance, rollback rehearsal. |
 | G05 | Product/E/O | G04 | 2–3 | Launch scope, license/contribution policy, support lifecycle, pricing/compute cost, measurement plan, go/no-go record. |
 
-Exit: R28–R31, signed installers and verified updater, real self-hosted and hosted tests, security and restore evidence. GA decision by owner; no automatic enablement or deployment. Public marketplace, arbitrary executable extensions, voice/video, external execution providers, cross-cell migration, advanced federation and mobile follow prioritized demand, not prerequisite unless enterprise contract requires.
+Exit: R28–R31 and R48, signed installers and verified updater, real self-hosted and hosted tests, security and restore evidence. GA decision by owner; no automatic enablement or deployment. Public marketplace, arbitrary executable extensions, voice/video, external execution providers, cross-cell migration, advanced federation and mobile follow prioritized demand, not prerequisite unless enterprise contract requires.
+
+Additional P4 package:
+
+| Package | Owner | Depends | Agent slices | Deliverable / DoD |
+| --- | --- | --- | --- | --- |
+| M08 | D/E/S | M02–M07 | 3–5 | Applicable stable authorization extensions, conformance matrix and independent interoperability/security release review; actual supported revisions/features documented. |
+
+Separate experimental pilot (not included in core GA):
+
+| Package | Owner | Depends | Agent slices | Deliverable / DoD |
+| --- | --- | --- | --- | --- |
+| M09 | D/E | M02,M06 | 3–5 | Pin Skills/Events Beta and draft file-transfer revision, validate scoped discovery/verified file reads/webhook subscriptions/authorized staged transfer, explicit opt-in and unsupported status; no stable claim. |
 
 ## 8. Federation milestones (separate gated delivery; 17–29 slices)
 
@@ -213,6 +257,7 @@ Create issues only after owner review and dedup upstream. No automatic labels or
 - Epic E8: scaling, quotas and reliability (C05–C06, G02).
 - Epic E9: secure distribution and enterprise launch (G01,G04,G05).
 - Epic E10: federation pilots (X01–X04, separately gated).
+- Epic E11: modern MCP, forms, Apps, Tasks, conformance and portable plugins (M01–M08), beta/draft pilot (M09).
 
 Each child issue contains dependencies, user journey, allowed authority, explicit non-goals, file/repo ownership, contract, tests, evidence and rollback. Link upstream DevBox issues rather than duplicating. Use acceptance criteria from tables, not vague completion by code existence.
 

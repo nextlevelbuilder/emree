@@ -11,7 +11,8 @@ Learn from DeepSeek Harness's Cordis services, effects, profiles/bundles and con
 | Core | Reviewed signed app/native broker | Auth, policy, storage, emergency stop |
 | Official built-in | Bundled, reviewed, signed; typed interfaces | Rooms, Inbox, Workbench, Devices |
 | Declarative extension | Host renders validated data, no arbitrary JS or native calls | CRM panel, task card, command, theme |
-| Sandboxed UI (later) | Separate isolated origin/process, restricted bridge, no native IPC, network deny by default | Rich integrations |
+| MCP Apps (alpha after gate) | Isolated standard HTML bridge; no privileged native IPC | External interactive tool UI |
+| Arbitrary sandboxed UI (later) | Separate isolated origin/process, restricted bridge, no native IPC, network deny by default | Rich integrations |
 | Trusted native provider | Operator-installed signed component, separate process, explicit high-risk review | OS Computer Use adapter, approved execution provider |
 
 Never expose arbitrary native commands, SQL, filesystem, shell, token values, or broad HTTP proxy to a plugin. Treat marketplace package content and remote output as untrusted. Agent can draft a plugin but cannot install it or widen permissions without authorized policy/consent.
@@ -37,7 +38,11 @@ Never expose arbitrary native commands, SQL, filesystem, shell, token values, or
 
 Start with navigation, panel, card, command, settings, event subscription and action invocation. Implement Workbench/terminal and device/runtime provider seams with their owning features, not empty registries. Publish SDK version separately from desktop releases. Unique namespaced IDs, explicit input/output schemas, semver compatibility, resource context injected by host, never trust extension-supplied tenant or principal. Unknown contribution types are rejected, unavailable action is visible as disabled.
 
-## Manifest
+## Portable distribution and vendor interoperability
+
+Agent Plugins 1.0.0 is the canonical portable package, not the Emree declarative manifest below. Support Claude and ChatGPT/Codex formats through explicit adapters. The native manifest is only a host-specific contribution overlay. Standard MCP Apps are the rich interactive path and are in alpha scope after sandbox gate; arbitrary third-party UI remains deferred. See [MCP](MCP.md) and [compatibility](PLUGIN-COMPATIBILITY.md).
+
+## Native contribution manifest
 
 A declarative manifest describes id, version, publisher, kind, compatibility, dependencies, requested permissions, contribution entries and asset digests. See [example](../examples/extensions/crm/manifest.json) and [draft schema](../contracts/extension-manifest.schema.json). This schema is a minimal alpha proposal; installation additionally needs signature/digest verification, dependency resolution, full package validation and policy. No eval, executable script or remote code in declarative packages; templates are a small data-only vocabulary with bounded nesting, sanitization and host-controlled actions. No external URL fetched without explicit allowed capability.
 

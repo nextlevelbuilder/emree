@@ -2,7 +2,7 @@
 
 ## Product purpose and language
 
-Emree is a greenfield Apache-2.0 desktop workspace powered by Dewee. Read DECISIONS.md, docs/PRD.md, docs/ARCHITECTURE.md, docs/ONBOARDING.md, docs/FEDERATION.md and plans/IMPLEMENTATION.md before implementation. Public technical docs in English; UI in English/Vietnamese. Reply to collaborators in their language. Treat proposal contracts and performance targets as unverified. Do not copy restricted upstream code; this public repository must not expose internal operational details.
+Emree is a greenfield Apache-2.0 desktop workspace powered by Dewee. Read DECISIONS.md, docs/PRD.md, docs/ARCHITECTURE.md, docs/ONBOARDING.md, docs/FEDERATION.md, docs/MCP.md, docs/PLUGIN-COMPATIBILITY.md and plans/IMPLEMENTATION.md before implementation. Public technical docs in English; UI in English/Vietnamese. Reply to collaborators in their language. Treat proposal contracts and performance targets as unverified. Do not copy restricted upstream code; this public repository must not expose internal operational details.
 
 ## Emree and Dewee own the complexity
 
@@ -61,6 +61,10 @@ Persist safe navigation, open panel/tab, search/filter and draft by workspace; B
 ## Extensibility and failure isolation
 
 Official modules exercise versioned extension SDK. Unload cancels owned work, removes UI/subscriptions and releases exclusive slots only after cleanup; schema-valid manifest grants no permission. Trusted kernel cannot be overridden. Separate durable collaboration from realtime/cache, agent jobs, terminal, media and device input; no binary media in chat or unbounded fan-out. Keep Dewee as source of truth, cache disposable, no automatic replay of uncertain input. Scope all caches and grants by verified server/workspace/principal/resource; cross-workspace share does not relax tenant isolation. Add complexity only after evidence.
+
+## Standards-first interoperability
+
+Use current verified stable MCP and official extension schemas; version-negotiate and test legacy peers; never claim all features from SDK version or a tool name. Treat beta/draft extensions as flag-gated. Standard MCP Apps uses isolated bridge; native approval/credential/device UI stays trusted. Portable packages follow Agent Plugins; legacy Claude/OpenAI imports provide precise component/permission report, no automatic hooks or credential migration. Preserve upstream attribution and test real interoperable samples. See docs/MCP.md and docs/PLUGIN-COMPATIBILITY.md.
 
 ## Before reporting completion
 

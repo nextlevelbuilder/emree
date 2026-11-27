@@ -39,6 +39,10 @@ Client sends optimistic local item and never trusts local success as server ACK.
 
 Preserve owner room sequence and canonical commit ACK for shared rooms, with exact authorized recipient projection and current partner policy. Same-cell adapter first; cross-cell authenticated relay later, stable origin event/idempotency and signed receipt, bounded pending/unknown on owner failure. No foreign tenant bus subscription or replica ACK. See [FEDERATION.md](FEDERATION.md).
 
+## MCP interaction and task projections
+
+Modern MCP calls are stateless; durable invocation, human input and task handles are server-side state, not WebSocket session state. Poll external task once per scoped task with bounded backoff; publish authorized status changes to native inbox/room rather than polling per client. No raw form values, app context or task handles in public room events. See [MCP](MCP.md).
+
 ## Agent fan-out and queues
 
 A normal message is not an automatic run. Explicit mention/policy routes to selected agents; coordinator owns chain depth, turns, token/time/budget caps and loop detection. Store causal chain ID and idempotent trigger key. Separate queues for durable delivery, agent dispatch, search/inbox, media; reserve priority lane for stop/revoke/approval, not dependent on model jobs. Job lease/fencing, bounded retries with jitter and dead-letter diagnostics; unknown external outcome requires reconciliation. Use fair per-tenant admission, concurrency and budgets. Keep long-running jobs outside HTTP request. Start with PG SKIP LOCKED and measured queue depth; introduce JetStream only when recovery, concurrency or contention demands. If Centrifugo Valkey already handles realtime, do not add parallel Core NATS just to duplicate fan-out.

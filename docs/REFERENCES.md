@@ -29,6 +29,13 @@ The following public sources informed the proposed design. Source inspection is 
 - [Matrix room authorization](https://spec.matrix.org/v1.11/rooms/v10/): signed event sender/membership state; avoid unnecessary distributed consensus for initial design.
 - [METR time horizons](https://evals.alignment.org/time-horizons/): benchmark time horizon is not agent wall-clock project completion; calibrate measured accepted slices.
 
+## MCP and portable plugin research
+
+- [MCP 2026-07-28](https://modelcontextprotocol.io/specification/2026-07-28), [release notes](https://blog.modelcontextprotocol.io/posts/2026-07-28/), [extension overview](https://modelcontextprotocol.io/extensions/overview), [Tasks](https://tasks.extensions.modelcontextprotocol.io/), [Apps](https://apps.extensions.modelcontextprotocol.io/api/).
+- [Agent Plugins 1.0.0](https://agent-plugins.org/), [OpenAI packaging](https://developers.openai.com/plugins/build/plugins), [OpenAI MCP Extensions](https://github.com/openai/mcp-extensions), [Claude plugin reference](https://code.claude.com/docs/en/plugins-reference).
+- [Skills Beta](https://skills.extensions.modelcontextprotocol.io/), [Events Beta](https://github.com/modelcontextprotocol/ext-events), [file transfer exploration](https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/).
+- Clarkcant reviewed default-branch snapshot ae71a759; source-based findings and limitations in [CLARKCANT-RESEARCH.md](CLARKCANT-RESEARCH.md).
+
 ## Evidence status
 
 Upstream Dewee reviewed in November 2026; [integration map](DEWEE-INTEGRATION.md) records high-level observations and dependencies. No production deployment, interoperability benchmark, physical-device tests or security audit was performed by this documentation bootstrap. Numbers are targets or explicit workload assumptions. Public documentation intentionally excludes customer data, credentials, internal operational endpoints and host-level security details.

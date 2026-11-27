@@ -26,6 +26,10 @@ Trusted: Dewee identity and authorization, authoritative storage, verified nativ
 
 SSO token audience isolation is preserved: first-party native login requires separate scoped session issuance, validated redirect and linked revocation. No browser cookie scraping. See [ONBOARDING.md](ONBOARDING.md). Federation does not grant tenant membership; require verified issuer/workspace/actor, bilateral relationship and resource-owner policy at each share/send/read/execute, deny conflicts and unknown policy, audit both sides. On partition fail closed for new effects; cannot recall delivered copies. See [FEDERATION.md](FEDERATION.md).
 
+## MCP and plugin trust
+
+Treat server-supplied UI, annotations, resources, schemas, skills and package code as untrusted. Native Apps iframe cannot access privileged IPC, tokens or local files; every bridge action reauthorizes and is scoped to the server/instance. External forms and Tasks bind current requester and invocation; never equate elicitation with blanket privileged approval. Portable manifests grant no rights; no implicit credential export or hook execution. See [MCP](MCP.md) and [plugin compatibility](PLUGIN-COMPATIBILITY.md).
+
 ## Authorization and observability
 
 Authorize at side effect, including retries, queued jobs and reconnect; never replace policy with UI checks or a system prompt. Current membership AND underlying resource ACL required for artifacts and search snippets. Native grant cannot be self-approved by agent. Use typed confirmation/approval for risky actions; bind exact parameters, revision, target and expiry. Recheck after human decision. Redact secrets, command contents, private outputs and model internals. Trace attempts (allowed/blocked/error/cancel/retry), correlation and reason, not merely success. Add trace/CLI/MCP/RGD/CCP parity as appropriate. Privileged feature flags default off, tenant can only narrow operator allow. Provide a real kill path even when AI or queue is down.

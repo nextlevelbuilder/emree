@@ -16,6 +16,10 @@ New native session exchange/refresh/revoke and workspace list/create/invite/oper
 
 Use issuer-qualified subject/workspace/actor type and owner workspace/home cell, explicit share context and policy epoch; foreign identities never derive from payload alone. Reserve separate relationship, membership, grant and relay event/receipt records in later migrations. No live external access implied by schema. [FEDERATION.md](FEDERATION.md) specifies owner authority, current bilateral authorization and later relay.
 
+## Native MCP and package contracts
+
+Pin upstream spec schemas and fixtures for each negotiated MCP version and extension. Use typed invocation/interaction and external task references in Dewee, not invented equivalents of MCP wire methods. Apps bridge follows the standard; vendor overlays separately versioned. Package IR preserves original format/digest, portable components and unsupported metadata. See [MCP](MCP.md), [plugin compatibility](PLUGIN-COMPATIBILITY.md).
+
 ## REST surface (candidate v1)
 
 | Method/path under /v1/collab | Semantics |
