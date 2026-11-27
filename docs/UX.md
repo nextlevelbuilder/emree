@@ -6,7 +6,7 @@ Design for daily collaboration, not an admin dashboard. Default shell: workspace
 
 | Screen | Key content | Empty/error/recovery states |
 | --- | --- | --- |
-| Connect & onboarding | Cloud or explicit self-hosted origin, browser sign-in, workspace list | Invalid TLS/origin, expired login, unsupported version |
+| Connect & onboarding | Welcome, Dewee SSO signup/sign-in, invite or create/choose workspace, native Setup Concierge and first useful task; self-host secondary | Invalid TLS/origin, expired login, entitlement/provisioning failure, missing provider, unsupported version, role-aware resume |
 | Inbox | Mentions, tasks, questions, approvals, grouped status | Nothing needs attention, pending/expired/refused, retry |
 | Room | Message timeline, threads, composer, agents, task links | No messages, offline/draft, failed send, removed membership |
 | DM | Human or agent participant, private history | Invite unavailable, blocked resource |
@@ -17,6 +17,10 @@ Design for daily collaboration, not an admin dashboard. Default shell: workspace
 | Settings | Server, accounts, notifications, privacy, updates, diagnostics | Secure store unavailable, update rejected |
 | Extensions | Catalog, permissions, profile, install/enable/disable/rollback | Incompatible, missing dependency, failure, revoked |
 | DevBox Workbench | Box/session selector, TUI/Chat/changes/files, lifecycle | Sleeping, no backend, wake progress, no access, reconnect, unsupported mode |
+
+## First-run and future partner UX
+
+See [onboarding](ONBOARDING.md) for the exact novice, returning and invited paths. No technical terms, manual gateway key, separate Dewee dashboard wizard or unnecessary provider question. Secure browser handoffs return to same native screen; show canonical setup progress, one next action, recovery without repeated data. For future [shared contexts](FEDERATION.md), show verified external badge, owner, participating organizations, share scope and policy preview; invite/DM consent, resource ACL and revoke states. Never expose unimplemented capabilities.
 
 ## Wireframe A: team room + execution panel
 

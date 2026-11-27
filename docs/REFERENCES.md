@@ -21,6 +21,14 @@ The following public sources informed the proposed design. Source inspection is 
 - [R2 presigned URLs](https://developers.cloudflare.com/r2/api/s3/presigned-urls/), [R2 pricing](https://developers.cloudflare.com/r2/pricing/), [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/), [Cloudflare Realtime](https://developers.cloudflare.com/realtime/), [LiveKit](https://github.com/livekit/livekit)
 - [ScreenCaptureKit](https://developer.apple.com/documentation/ScreenCaptureKit), [Windows Graphics Capture](https://learn.microsoft.com/en-us/windows/uwp/audio-video-camera/screen-capture), [RemoteDesktop portal](https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.RemoteDesktop.html)
 
+## Onboarding, federation and delivery research
+
+- [RFC 8252](https://www.rfc-editor.org/rfc/rfc8252.html): system-browser native OAuth and loopback redirect constraints.
+- [Slack Connect](https://slack.com/help/articles/115004151203-Slack-Connect-guide--work-with-external-organizations), [disconnect behavior](https://slack.com/help/articles/360063030933-Slack-Connect--Disconnect-from-an-organization): room ownership and recipient archive semantics.
+- [Teams shared channels](https://learn.microsoft.com/en-us/microsoftteams/shared-channels): bilateral access, channel membership distinct from file grants.
+- [Matrix room authorization](https://spec.matrix.org/v1.11/rooms/v10/): signed event sender/membership state; avoid unnecessary distributed consensus for initial design.
+- [METR time horizons](https://evals.alignment.org/time-horizons/): benchmark time horizon is not agent wall-clock project completion; calibrate measured accepted slices.
+
 ## Evidence status
 
 Upstream Dewee reviewed in November 2026; [integration map](DEWEE-INTEGRATION.md) records high-level observations and dependencies. No production deployment, interoperability benchmark, physical-device tests or security audit was performed by this documentation bootstrap. Numbers are targets or explicit workload assumptions. Public documentation intentionally excludes customer data, credentials, internal operational endpoints and host-level security details.

@@ -1,6 +1,6 @@
 # Emree decision brief
 
-Version 0.4 | 2026-11-27 | Design baseline, not release approval.
+Version 0.5 | 2026-11-27 | Design baseline, not release approval.
 
 ## Executive decision
 
@@ -22,7 +22,7 @@ Status: **Baseline** means use for planning; **Spike** means preferred, not lock
 | D04 | Baseline | Plugin-first with non-replaceable trusted kernel; built-ins consume versioned extension contracts | Do not run arbitrary npm/Rust third-party code in privileged host. First release declarative only; sandboxed UI later. |
 | D05 | Baseline | Home-cell routing, PostgreSQL authoritative, client SQLite cache | No cross-cell shared DB; no global chat DB or active-active writes. |
 | D06 | Spike | Centrifugo + Valkey for realtime; scoped connection/subscription authorization; REST durable writes, WS event delivery | Self-built Go WS fallback if revocation/recovery gates fail. Keep durable event cursor independent of transport history. |
-| D07 | Baseline | Transactional PostgreSQL outbox and bounded workers initially | NATS JetStream later only when measurable lag/contension requires it; no duplicate broker just for fashion. |
+| D07 | Baseline | Transactional PostgreSQL outbox and bounded workers initially | NATS JetStream later only when measurable lag/contention requires it; no duplicate broker just for fashion. |
 | D08 | Baseline | Private R2/S3 attachments, direct authorized upload, separate scanning/transform | Local filesystem/S3 for self-hosted; no binary payload in chat or blind reuse of runtime workspace storage. |
 | D09 | Baseline | DevBox Workbench as first-party extension; remote PTY/TUI first, structured Chat second | ACP/SDK adapters per runtime; do not parse ANSI into authoritative chat; no assumed TUI/chat session migration. |
 | D10 | Baseline | Separate DevBox execution worker and session gateway before broad shared access | gVisor on supported Linux hosts; no raw Docker fallback or host shell; fence by generation and lease. |
@@ -30,15 +30,21 @@ Status: **Baseline** means use for planning; **Spike** means preferred, not lock
 | D12 | Spike | Cloudflare edge/Workers/R2 plus existing Dewee infrastructure, Linux K8s or Docker Compose | Confirm actual regions, cost, residency, HA and load; portable interfaces, no Cloudflare requirement for on-prem. |
 | D13 | Deferred | WebRTC/SFU calls, arbitrary sandboxed UI plugins, public marketplace, local external runtimes | Establish seams now, deliver only if real usage justifies; signed private catalog first. |
 | D14 | Baseline | Secure authorization and trace parity across Gateway, desktop, CCP/RGD, CLI and appropriately scoped MCP | No new generic privileged proxy, no UI-only authorization. |
-| D15 | Owner | Product launch scope, staffing, pricing, supported OS versions, enterprise retention/data residency | Plan assumes 5–7 engineers; actual targets require product owner and security review. |
+| D15 | Owner | Product launch scope, staffing, pricing, supported OS versions, enterprise retention/data residency | Actual scope requires product owner and security review; use measured agent-slice throughput, not human labor estimates. |
+| D16 | Baseline | Native first-party Dewee SSO and conversational onboarding, including new accounts/workspaces | Existing SSO tokens are userinfo-only; add separate desktop session and native adapters, reuse Setup Concierge and provisioning. See [onboarding](docs/ONBOARDING.md). |
+| D17 | Baseline / Deferred delivery | Federation-ready identities, room ownership and policy from alpha; cross-workspace rooms, DMs, agents/resources follow explicit bilateral approval | Owner-anchored shared context, no global DB/tenant membership; same-cell then cross-cell/independent deployment. See [federation](docs/FEDERATION.md). |
+| D18 | Baseline | Agent-first execution slices, independent review and measured calendar throughput | No human-hour estimate; reforecast after P0. See [plan](plans/IMPLEMENTATION.md). |
 
 ## What makes this worth building
 
 Dewee's durable value is agent coordination, governance and organizational knowledge. Emree makes that accessible in everyday work. A Slack clone alone is not a defensible product. A new terminal alone is also not a defensible product. The combination of human/agent collaboration, shared work context, safe execution and visible evidence is the hypothesis.
 
-Validate with 3–5 design-partner teams; measure weekly accepted human+agent tasks, time-to-first accepted result, inbox resolution, adoption, failed/retried work, support incidents and cost per accepted task. Baseline metrics during alpha before setting growth targets. Do not optimize tokens or messages as proxy for customer value.
+Validate with 3–5 design-partner teams, including a user new to Dewee and a cross-workspace pilot when approved; measure weekly accepted human+agent tasks, time-to-first accepted result, inbox resolution, adoption, failed/retried work, support incidents and cost per accepted task. Baseline metrics during alpha before setting growth targets. Do not optimize tokens or messages as proxy for customer value.
 
 ## Gates before irreversible implementation
+
+- Prove a new user can create or join a workspace from Emree, safely resume the same server-owned onboarding, and reach a first useful task.
+- Verify issuer-qualified identity, room ownership and policy contracts without granting external access; separate federation pilot requires bilateral consent and revocation tests.
 
 - Confirm licensing and contributor policy; no private operational details, secrets or copied restricted code in this public repo.
 - Demonstrate two humans and one agent in a native room using real Dewee authorization; offline/reconnect and revoked-user negative tests.

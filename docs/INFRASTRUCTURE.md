@@ -8,7 +8,7 @@ Self-hosted/dedicated: Docker Compose for small installations, K8s reference man
 
 ## Home cells
 
-Control plane maps workspace -> single home cell. Each cell has its own PG, queues, cache, backups, attachment namespace/policy and runtime capacity. Do not share database across cells. Add cells for capacity, isolate noisy tenants, dedicated placement for residency. Multi-region reads/active-active writes out of scope. Cross-cell collaboration only via Dewee authorized peer grants. Migration requires freeze/fence writes, export/restore metadata and objects, verify hashes/cursors/membership, route cutover and rollback; do not edit workspace routing manually while writes can occur.
+Control plane maps workspace -> single home cell. Each cell has its own PG, queues, cache, backups, attachment namespace/policy and runtime capacity. Do not share database across cells. Add cells for capacity, isolate noisy tenants, dedicated placement for residency. Multi-region reads/active-active writes out of scope. Existing cross-cell agent coordination uses authorized peer grants. Future native shared rooms use owner-anchored authority and authenticated relay, separate from tenant placement; see [FEDERATION.md](FEDERATION.md). Migration requires freeze/fence writes, export/restore metadata and objects, verify hashes/cursors/membership, route cutover and rollback; do not edit workspace routing manually while writes can occur.
 
 ## Deployment units and scaling
 

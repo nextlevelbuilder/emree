@@ -45,6 +45,14 @@ Arrows represent logical interactions; database commits, job processing and auth
 
 Existing channel-derived rooms coordinate agent membership for an external conversation. Native rooms have human and agent participants with stable IDs and ACL. Do not mutate the old room constraints to shoehorn human members. Add collab rooms/members/messages/events/read-state/outbox; bind native room to coordinator using a typed adapter and explicit identity domain. Native messages become durable first; orchestration is a separate job. External channels are not automatically synced to native rooms; explicit binding, visibility rules, echo dedup, grants and failure behavior are required.
 
+## Native onboarding and identity
+
+See [ONBOARDING.md](ONBOARDING.md): use a first-party native OIDC client and separately audience-bound desktop session, then canonical workspace provisioning, setup plan and readiness. SSO access tokens are not API tokens. Do not duplicate identity/setup state. Hosted and self-hosted capabilities differ.
+
+## Federation-ready collaboration
+
+See [FEDERATION.md](FEDERATION.md): room ownership/home cell and issuer-qualified principals/resources in initial contracts; native local rooms remain default. Shared contexts use explicit bilateral relationships and resource-owner grants, not foreign tenant membership. Same-cell first, cross-cell relay later. Single authority per room, no global database or implicit cross-workspace access.
+
 ## Client layout
 
 - Local bundled React 19/TS/Vite shell, accessible design system, TanStack Query for server state, Zustand for transient UI state. Virtualized message timeline; ProseMirror/Tiptap candidate for composer; sanitized content.

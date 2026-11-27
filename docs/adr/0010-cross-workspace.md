@@ -1,0 +1,5 @@
+# ADR 0010: Shared contexts across workspace boundaries
+
+Status: proposed architecture runway; 2026-11-27. D17. See [federation spec](../FEDERATION.md).
+
+Workspace remains governance/data boundary, not collaboration boundary. Use owner-anchored shared contexts with explicit participant and bilateral relationship grants, scoped resource-owner authority and current policy intersection. Same-cell humans/DMs first; then shared agents/resources, cross-cell authenticated relay and eventually separate deployments. No global DB, blanket membership, email matching or permission union. Dewee Team Room peer grants/relay are agent-only precedent, not native human federation. Alternative full decentralized Matrix-style state resolution deferred; single room authority gives ordered writes and simpler compliance. Add identity/resource/room-owner fields to contracts in alpha; cross-workspace feature dark until mutual consent, revocation, retention/residency, failure/partition and cross-tenant tests pass. No automatic revocation of already copied data; disclose archive/retention semantics.

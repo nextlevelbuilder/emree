@@ -4,7 +4,9 @@ Emree calls Dewee's supported contracts. This document is a public-facing capabi
 
 | Upstream capability | Existing baseline | Required for Emree |
 | --- | --- | --- |
-| Identity/CCP | Workspace identity and scoped customer session/extension auth | Native public OAuth client + PKCE, app lifecycle, workspace/cell discovery, scope registry |
+| Identity/CCP | Hosted OIDC SSO (userinfo-only access token), scoped customer session/extension auth, workspace provisioning/invites | First-party native client and separate desktop session/credential exchange, native create/join and scope registry; see [onboarding](ONBOARDING.md) |
+| Workspace setup | Server-owned Setup Concierge, plan/actions, readiness, Super Agent bootstrap/handoff | Native structured card adapter and safe credential/approval handoff; role-aware resume, no second engine |
+| Cross-workspace coordination | Bilateral agent peer grants and cross-runtime relay | Native shared room/DM and resource-owner grants, same-cell first, separate federation phases; see [federation](FEDERATION.md) |
 | Team Room | External group/mailbox agent coordination, event log, limits, outbox, peer grants | Native room human/agent membership, messages/threads/DM/read state, typed coordinator adapter, no regressions |
 | Agent chat | Structured SSE chat events, sessions, trace | Authorized native room projection, final events, task/approval links |
 | Interaction | Human interaction and approval cases | Unified inbox with action binding, replay, takeover |
@@ -18,7 +20,7 @@ Emree calls Dewee's supported contracts. This document is a public-facing capabi
 
 ## Cross-repo work packages
 
-- D-A: native auth/version bootstrap/permission scopes; tests for revoked membership, token reuse and cell switch.
+- D-A: first-party SSO, separate native session, version bootstrap/permission scopes, idempotent workspace create/join and Setup Concierge parity; tests for revoked membership, token reuse and cell switch.
 - D-B: native collaboration data model, REST, durable outbox and sync/realtime; adapter into Team Room and ACL; shared contracts fixture.
 - D-C: agent task/run/interaction/inbox projections and controlled routing; trace coverage and server actions.
 - D-D: attachment metadata/authorization/scan lifecycle and storage provider.
@@ -27,6 +29,8 @@ Emree calls Dewee's supported contracts. This document is a public-facing capabi
 - D-G: approved extension catalog metadata/distribution and private registry integration (later if available).
 
 DevBox upstream epic [#2696](https://github.com/nextlevelbuilder/dewee/issues/2696) and access/accounts/repositories/work/usage/extensions/storage/activity issue references [#3118](https://github.com/nextlevelbuilder/dewee/issues/3118) through [#3125](https://github.com/nextlevelbuilder/dewee/issues/3125) were seen in the reviewed UI capability map, not independently confirmed current. Reconcile with those issues; do not create duplicates or mark them done based on UI placeholders.
+
+- D-H: federation contract runway, then mutual partner relationship, scoped shared room/DM, resource/agent grants, policy and cross-cell relay after approval. Keep tenant ownership and existing agent peer semantics intact.
 
 ## Parity matrix
 

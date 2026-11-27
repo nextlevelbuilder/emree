@@ -4,9 +4,17 @@ These names are draft contracts for joint review with Dewee; they are not claims
 
 ## Version negotiation and auth
 
-Discover supported capabilities and protocol range through an authenticated workspace bootstrap. Native public OAuth client uses authorization code + PKCE S256, state, external browser, exact registered redirect (loopback or claimed HTTPS as appropriate), rotation/reuse detection, revocation and expiry. Scoped access tokens remain native; refresh material in OS secure store only; no master keys or raw tokens in WebView. Treat self-hosted origins as explicit connections, TLS validated. Desktop server switching cancels requests and subscriptions, clears previous projection.
+Discover supported capabilities and protocol range through an authenticated workspace bootstrap. Native public OAuth client uses authorization code + PKCE S256, state, external browser, exact registered redirect (loopback or claimed HTTPS as appropriate), rotation/reuse detection, revocation and expiry. Hosted SSO access token is userinfo-only; add separate first-party desktop BFF session issuance linked to verified SSO grant and revocation. Native redirect handling must be reviewed against existing exact registered URI rule; do not loosen all clients. See [ONBOARDING.md](ONBOARDING.md). Scoped access tokens remain native; refresh material in OS secure store only; no master keys or raw tokens in WebView. Treat self-hosted origins as explicit connections, TLS validated. Desktop server switching cancels requests and subscriptions, clears previous projection.
 
 Proposed bootstrap fields: workspace_id, runtime_tenant_id (server-derived mapping), home_cell, api_version, realtime_endpoint, feature/capability flags, policy_version, user profile and permitted action descriptors. No infrastructure credential. Realtime and DevBox attach tickets separately audience-, resource-, connection- and expiry-bound; never persist/log ticket in URL. Validate negotiated version; refuse unsupported features gracefully.
+
+## Native onboarding API candidates
+
+New native session exchange/refresh/revoke and workspace list/create/invite/operation endpoints are proposed, not existing. Reuse canonical ownership/entitlement/provisioning services and server-owned setup capability/plan/action/readiness/handoff contracts. Validate native audience, no direct use of browser cookie/form routes. See [ONBOARDING.md](ONBOARDING.md).
+
+## Federation contract runway
+
+Use issuer-qualified subject/workspace/actor type and owner workspace/home cell, explicit share context and policy epoch; foreign identities never derive from payload alone. Reserve separate relationship, membership, grant and relay event/receipt records in later migrations. No live external access implied by schema. [FEDERATION.md](FEDERATION.md) specifies owner authority, current bilateral authorization and later relay.
 
 ## REST surface (candidate v1)
 

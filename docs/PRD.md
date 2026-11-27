@@ -1,6 +1,6 @@
 # Product requirements document
 
-Version 0.4 | Proposed engineering requirements. See [Decision brief](../DECISIONS.md) and [implementation plan](../plans/IMPLEMENTATION.md).
+Version 0.5 | Proposed engineering requirements. See [Decision brief](../DECISIONS.md) and [implementation plan](../plans/IMPLEMENTATION.md).
 
 ## Problem, audience and success
 
@@ -10,7 +10,7 @@ Personas: employee (communicate and complete tasks without technical setup), man
 
 ## Core journeys
 
-1. Install signed app, sign in via system browser, choose a workspace, open a room, invite permitted members, send a message, receive real-time reply. Disconnect, draft and reconnect without duplicates.
+1. Install signed app with no prior Dewee account, sign up/sign in via trusted system browser, return to Emree, create or join workspace, resume native Setup Concierge, reach first useful conversation/room. Existing users resume or switch. Disconnect, draft and reconnect without duplicates.
 2. Mention a Dewee agent, see who accepted the task, follow structured activity, answer a question or approve a bounded action, see verified result and task link; close the app and later resume observation.
 3. From a task card choose an authorized DevBox, wake explicitly, select runtime and session mode, open right sidebar, detach/reconnect, share chosen diff or artifact, cancel/terminate or release control. Raw terminal stays private by default.
 4. Request access to a specific local folder, browser origin or application; approve from trusted native UI, see active session and indicator, pause/take over/revoke locally. No action without current user/agent/resource policy.
@@ -54,10 +54,21 @@ P0 = foundation, P1 = collaboration alpha, P2 = agent/workbench beta, P3 = devic
 | R30 | P4 | Accessibility and i18n | English/Vietnamese, keyboard-only flows, screen reader labels, reduced motion, light/dark/system, zoom and responsive layout. |
 | R31 | P4 | Operability | Contract, load, fault, security and real OS tests with evidence, trace parity, supportable error codes and diagnostics. |
 | R32 | Later | External runtimes, voice/video, custom sandboxed UI | Only ship after explicit demand, interoperability/security tests; no parity claim for unsupported capability. |
+| R33 | P1 | First-time native onboarding | First-party Dewee SSO returns to Emree; separately audience-bound desktop session, no dashboard detour, duplicate accounts or generic SSO bearer. |
+| R34 | P1 | Workspace create/join | Explicit entitlement/region/confirmation, verified invite, idempotent provisioning, resume and switch; no redundant workspace. |
+| R35 | P1 | Guided Dewee setup in Emree | Reuse server-owned Concierge/structured cards, provider verification, Super Agent handoff; owner/member/managed role split; secret-free recovery. |
+| R36 | P1 | Friendly recovery and first value | New, existing, invited, multiple workspace, offline/expired, no provider, interrupted and self-host capability scenarios; no repeated completed steps; permitted human chat independent of AI readiness only under canonical policy. |
+| R37 | P1 | Federation runway | Issuer-qualified principal, resource ownership, room authority and policy epoch in contracts; external collaboration off by default. |
+| R38 | Later | Shared rooms and cross-workspace DMs | Bilateral approval, exact participants, owner ordering, explicit invitation/history policy/block/revoke; no full tenant membership. |
+| R39 | Later | Shared resources and agents | Explicit scoped owner grant, remote execution in owner workspace, provenance/ACL/budgets, no credential or transitive sharing. |
+| R40 | Later | Cross-workspace governance | Both policies intersect, retention/residency/DLP/export/legal hold, auditable consent and conflict denial; disclose recipient copies. |
+| R41 | Later | Cross-cell / independent deployment collaboration | Authenticated relay, authoritative commit ACK, dedup/recovery/partition fail-closed, key rotation, independent security tests. |
+
+See [native onboarding](ONBOARDING.md) and [federation](FEDERATION.md). R38–R41 require separate pilot/release decisions, not first GA blockers.
 
 ## Scope and non-goals
 
-Alpha: login, rooms/DMs, threads, realtime sync, basic attachments, extension registry and a real Dewee integration. Beta adds agent work and remote DevBox TUI then structured chat; Computer Use is independently flagged. GA requires enterprise reliability and secure distribution. Do not rebuild Slack calls, Notion docs, CRM, IDE, agent runtime, marketplace backend, or cross-region active-active replication. Do not promise all native Computer Use actions on every OS.
+Alpha: first-time native Dewee SSO/signup, create/join/setup, rooms/DMs, threads, realtime sync, basic attachments, extension registry, real Dewee integration and federation contract runway. Beta adds agent work and remote DevBox TUI then structured chat; Computer Use is independently flagged. GA requires enterprise reliability and secure distribution. Do not rebuild Slack calls, Notion docs, CRM, IDE, agent runtime, marketplace backend, or cross-region active-active replication. Do not promise all native Computer Use actions on every OS. Cross-workspace live collaboration remains separately gated.
 
 ## Proposed acceptance targets
 
