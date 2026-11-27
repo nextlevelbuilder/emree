@@ -1,5 +1,7 @@
 # UX specification and screen wireframes
 
+See [proposed UX/AX standards](UX-AX-STANDARDS.md) for complexity absorption, multiplayer behavior, performance budgets, permission affordances and evaluation criteria. These are design-review proposals; existing MVP sequencing and authorization gates remain unchanged.
+
 Design for daily collaboration, not an admin dashboard. Default shell: workspace rail, navigation/rooms, central conversation, optional resizable right sidebar. Users can collapse navigation, resize panels, maximize/pop out Workbench, return via deep link. Keyboard navigation, focus restoration, accessible names, reduced motion, font zoom, English/Vietnamese, system/light/dark. Preserve drafts and sidebar state per workspace; never display previous-tenant content during switching. Native security consent and emergency controls outside plugin UI. Treat visual examples as mock data.
 
 ## Screen inventory

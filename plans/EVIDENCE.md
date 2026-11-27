@@ -1,5 +1,7 @@
 # Milestone evidence ledger
 
+For UX/AX evidence, consult [proposed standards](../docs/UX-AX-STANDARDS.md): record reference device/network, actual interaction timings, novice and agent journey outcomes, permission/recovery behavior and review. Proposed numerical budgets require calibration; do not report PASS based on mock UI or unexecuted tests.
+
 Initial status: NOT TESTED for all gates. Planning/issue creation is not implementation evidence. This ledger is updated by implementing and independent reviewing agents per merged slice; record reproducible artifacts in PRs and links here. Never publish secrets, customer data, private logs or credentials.
 
 | Gate | Issue | Status | Commit/build, environment, fixture versions, commands/results, trace and review |
